@@ -31,3 +31,6 @@ webcore/lib/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#Maven
+**/.factorypath
