@@ -81,11 +81,12 @@ public interface StorageInterface extends DicooglePlugin {
     /**
      * Stores a DICOM object into the storage.
      *
+     * @param calledAET   AET to be called
      * @param dicomObject Object to be Stored
      * @param parameters  a variable list of extra parameters for the retrieve
      * @return The URI of the previously stored Object.
      */
-    public URI store(DicomObject dicomObject, Object... parameters);
+    public URI store(String calledAET, DicomObject dicomObject, Object... parameters);
 
     /**
      * Stores a new element into the storage.
@@ -95,7 +96,7 @@ public interface StorageInterface extends DicooglePlugin {
      * @return the URI of the stored data
      * @throws IOException if an I/O error occurs
      */
-    public URI store(DicomInputStream inputStream, Object... parameters) throws IOException;
+    public URI store(String calledAET, DicomInputStream inputStream, Object... parameters) throws IOException;
 
     /**
      * Removes an element at the given URI.
