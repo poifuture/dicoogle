@@ -15,12 +15,15 @@ module.exports = {
     global: false
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      process: "process/browser"
+    }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
       "process.env.DICOOGLE_BASE_URL": JSON.stringify(
         process.env.DICOOGLE_BASE_URL
       ),
-      'global': 'window',
+      global: "window"
     }),
     new MiniCssExtractPlugin({
       filename: "dist/[name].css",
@@ -54,7 +57,12 @@ module.exports = {
           // Creates `style` nodes from JS strings
           "style-loader",
           // Minifies CSS
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false
+            }
+          },
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS

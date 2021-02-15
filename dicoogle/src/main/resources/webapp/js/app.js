@@ -23,7 +23,7 @@ import * as UserActions from "./actions/userActions";
 import UserStore from "./stores/userStore";
 
 import "@ungap/custom-elements-builtin";
-import "core-js/shim";
+import "core-js/stable";
 import "bootstrap";
 
 class App extends React.Component {
@@ -54,7 +54,7 @@ class App extends React.Component {
 
     this.setState({
       pluginMenuItems: pluginMenuItems.concat(
-        packages.map(pkg => ({
+        packages.map((pkg) => ({
           value: pkg.name,
           caption: pkg.dicoogle.caption || pkg.name,
           isPlugin: true,
@@ -134,7 +134,7 @@ class App extends React.Component {
     }
 
     let k = 2;
-    Webcore.fetchPlugins("menu", packages => {
+    Webcore.fetchPlugins("menu", (packages) => {
       this.onMenuPlugin(packages);
       Webcore.fetchModules(packages);
       k -= 1;
@@ -146,7 +146,7 @@ class App extends React.Component {
     // pre-fetch modules of other plugin types
     Webcore.fetchPlugins(
       ["search", "result-options", "query", "result"],
-      pkgs => {
+      (pkgs) => {
         Webcore.fetchModules(pkgs);
         k -= 1;
         if (k === 0) {
